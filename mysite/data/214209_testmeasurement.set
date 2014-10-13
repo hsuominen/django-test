@@ -1,0 +1,17 @@
+Filename: 214209_testmeasurement.dat
+Timestamp: Thu Oct 09 21:42:09 2014
+
+Instrument: example1
+	chA_output: 0.0
+	chB_output: 0.0
+	chC_output: 0.0
+	gain: 20.0
+	input1: None
+	input2: None
+	input3: None
+	input4: None
+	output1: 1.5
+	speed: 0
+	status: OFF
+	value1: None
+	value2: None
