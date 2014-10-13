@@ -67,18 +67,21 @@ STATIC_ROOT = ''
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
+ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
+
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/Users/hsuominen/Dropbox/repos/django-test/mysite/static',
 )
 
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -87,8 +90,8 @@ SECRET_KEY = 'f5hiwis4@z(o0z=!*shxtnhzl779v+9yq&y563zbne)l&mawnt'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
 
@@ -122,11 +125,13 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 
-    '/Users/hsuominen/Dropbox/repos/django-test/mysite/mysite/templates', # Change this to your own directory.
+    #'/Users/hsuominen/Dropbox/repos/django-test/mysite/mysite/templates', # Change this to your own directory.
     '/Users/hsuominen/Dropbox/repos/django-test/mysite/mysite/datastore/templates'
 )
 
 INSTALLED_APPS = (
+    'grappelli',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -134,7 +139,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'django_tables2',
