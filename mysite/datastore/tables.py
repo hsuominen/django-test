@@ -43,9 +43,23 @@ class AcquisitionTable(tables.Table):
 
     print clabels
     aa = clabels[0]
+    bb = clabels[1]
+
+    cc = tables.Column(
+        acquisition.objects.all()[0].coordinates.all()[0].coordinate_label)
+
+    roles = tables.Column(empty_values=())
+
+    def render_roles(self):
+        for i in acquisition.objects.all():
+            for j in i.coordinates.all():
+            	return j.coordinate_label
+    print cc
 
     class Meta:
         model = acquisition
         attrs = {"class": "paleblue"}
-        fields = ('acqdatetime','aa')
-        sequence = ('acqdatetime', 'aa',)
+        fields = (
+            'acqdatetime', 'aa', 'bb', 'cc', 'coordinates', 'values', 'roles')
+        sequence = (
+            'acqdatetime', 'aa', 'bb', 'cc', 'coordinates', 'values', 'roles')
