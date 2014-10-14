@@ -1,8 +1,14 @@
 # Create your views here.
 
 from django.shortcuts import render
-
 from datastore.models import acquisition
+from django_tables2   import RequestConfig
+from datastore.tables import AcquisitionTable
+
+def acquisitions(request):
+    table = AcquisitionTable(acquisition.objects.all())
+    RequestConfig(request).configure(table)
+    return render(request, 'datastore/table.html', {'table': table})
 
 # def index(request):
 #     latest_acq_list = acquisition.objects.all().order_by('-acqdatetime')[:5]

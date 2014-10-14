@@ -5,6 +5,7 @@ from picklefield.fields import PickledObjectField
 class acquisition(models.Model):
     #acq_id = models.CharField(max_length=6)
     acqdatetime = models.DateTimeField('date and time acquired')
+
     def __unicode__(self):
         return str(self.acqdatetime)
 
