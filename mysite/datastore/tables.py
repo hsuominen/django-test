@@ -3,63 +3,55 @@ from datastore.models import acquisition, coordinate, value
 
 
 class AcquisitionTable(tables.Table):
-    # class Meta:
-    #     model = acquisition
-    # add class="paleblue" to <table> tag
-    #     attrs = {"class": "paleblue"}
-    # coordinate_label = tables.Column(empty_values=())
 
+    coordinate_label_1 = tables.Column(empty_values=())
+    coordinate_label_2 = tables.Column(empty_values=())
+
+    def render_coordinate_label_1(self, record):
+        # Concatenates all coordinate_labels into a string
+        return record.coordinates.all()[0].coordinate_label
+
+    def render_coordinate_label_2(self, record):
+        # Concatenates all coordinate_labels into a string
+        return record.coordinates.all()[1].coordinate_label
+
+    #coordinate_label = tables.Column(empty_values=())
+
+    # def render_coordinate_label(self, record):
+    #     # Concatenates all coordinate_labels into a string
+    #     return ', '.join([coords.coordinate_label for coords in record.coordinates.all()])
+
+        # See http://django-tables2.readthedocs.org/en/latest/#
+        # Table.render_FOO() methods
+        # To change how a column is rendered, implement a render_FOO method on
+        # the table (where FOO is the column name). This approach is suitable
+        # if you have a one off change that you don't want to use in multiple
+        # tables.
+
+        # Supported keyword arguments include:
+
+        # record - the entire record for the row from the table data
+        # value - the value for the cell retrieved from the table data
+        # column - the Column object
+        # bound_column - the BoundColumn object
+        # bound_row - the BoundRow object
+        # table - alias for self
+
+    # This also works - but does not use the record explicitly
     # def render_coordinate_label(self):
-    # 	for a in acquisition:
-    # 		b = a.coordinate_label
 
-    #     	return a.coordinate_label
+    #     for i in acquisition.objects.all():
+    #         return i.coordinates.all()[1]
 
-    class Meta:
-        model = acquisition
-
-        a = []
-
-        for i in acquisition.objects.all():
-            for j in i.coordinates.all():
-                a.append(j.coordinate_label)
-
-        #coordinate_label = tables.Column(accessor="coordinates.all()")
-
-    # 	attrs = {"class": "paleblue"}
-    # 	fields = ("id","acqdatetime", "coordinate_label")
-
-    clabels = []
-
-    # for k in coordinates:
-    #coordinate_label = tables.Column(accessor='coordinates')
-
-    # clabels =
-    # tables.Column(accessor='coordinates')#.objects.prefetch_related('coordinates'))
-
-    for i in acquisition.objects.all():
-        for j in i.coordinates.all():
-            clabels.append(tables.Column(j.coordinate_label))
-
-    print clabels
-    aa = clabels[0]
-    bb = clabels[1]
-
-    cc = tables.Column(
-        acquisition.objects.all()[0].coordinates.all()[0].coordinate_label)
-
-    roles = tables.Column(empty_values=())
-
-    def render_roles(self):
-        for i in acquisition.objects.all():
-            for j in i.coordinates.all():
-            	return j.coordinate_label
-    print cc
+        # for j in i.coordinates.all():
+        #   print j
+        #     print i.coordinates.all()[1]
+        #   return j.coordinate_label
 
     class Meta:
         model = acquisition
         attrs = {"class": "paleblue"}
         fields = (
-            'acqdatetime', 'aa', 'bb', 'cc', 'coordinates', 'values', 'roles')
+            'acqdatetime', 'coordinate_label_1','coordinate_label_2')
         sequence = (
-            'acqdatetime', 'aa', 'bb', 'cc', 'coordinates', 'values', 'roles')
+            'acqdatetime', 'coordinate_label_1','coordinate_label_2')
